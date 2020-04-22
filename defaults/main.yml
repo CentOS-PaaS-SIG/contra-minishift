@@ -1,0 +1,23 @@
+---
+# defaults file for minishift
+#
+minishift_dest_dir: "{{ lookup('env', 'HOME') }}/bin"
+minishift_bin: "{{ lookup('env', 'HOME') }}/bin/minishift"
+minishift_version: v1.34.1
+start_minishift: true
+setup_minishift: true
+host_os: linux
+profile: minishift
+disk_size: 40gb
+memory: 9092mb
+cpus: 4
+minishift_insecure_registry: ""
+oc_version: v3.11.0
+minishift_external_vm_ip: ""
+minishift_external_vm_user: ""
+minishift_external_vm_ssh_key_location: ""
+force_minishift_install: false
+minishift_iso: https://github.com/minishift/minishift-centos-iso/releases/download/v1.14.0/minishift-centos7.iso
+run_cleanup: false
+dkvm_version: v0.10.0
+run_prereqs: false

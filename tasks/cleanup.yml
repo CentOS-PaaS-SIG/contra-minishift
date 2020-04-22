@@ -1,0 +1,28 @@
+---
+# Stop minishift profile, delete minishift profile,
+# delete minishift binary files, and kube config
+
+- name: Stop minishift if running
+  shell: "{{ minishift_bin }} stop --profile {{ profile }}"
+  ignore_errors: yes 
+
+- name: "Delete minishift profile {{ profile }}"
+  shell: "{{ minishift_bin }} delete --profile {{ profile }} --force"
+  ignore_errors: yes 
+
+- name: "Cleanup files and directories {{ minishift_dest_dir }}"
+  file:
+    path: "{{ minishift_dest_dir }}/{{ item }}"
+    state: absent
+  with_items:
+    - "minishift"
+    - "LICENSE"
+    - "README.adoc"
+  ignore_errors: yes 
+
+- name: Cleanup certain .kube
+  file:
+    path: "{{ ansible_env.HOME }}/.kube"
+    state: absent
+  ignore_errors: yes 
+
