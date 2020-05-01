@@ -22,7 +22,7 @@
 
 - name: Cleanup certain .kube
   file:
-    path: "{{ ansible_env.HOME }}/.kube"
+    path: "{{ lookup('env', 'HOME') }}/.kube"
     state: absent
   ignore_errors: yes 
 
