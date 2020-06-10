@@ -1,7 +1,7 @@
 ---
 # start minishift
 - name: "Initialization of minishift cluster with profile {{ profile }}"
-  shell: "{{ minishift_bin }} start --profile {{ profile }} --cpus {{ cpus }} --disk-size {{ disk_size }} --memory {{ memory }} --openshift-version {{ oc_version }} --iso-url file:///tmp/minishift.iso"
+  shell: "{{ minishift_bin }} start --profile {{ profile }} --cpus {{ cpus }} --disk-size {{ disk_size }} --memory {{ memory }} --openshift-version {{ oc_version }} --iso-url file:///var/tmp/minishift.iso"
 
 - block:
   - name: "Check if <cpu mode=host-passthrough/> is already set"
@@ -35,7 +35,7 @@
     when: cpu_mode_not_configured|bool
 
   - name: "Start minishift profile {{ profile }} again if configured"
-    shell: "{{ minishift_bin }} start --profile {{ profile }} --cpus {{ cpus }} --disk-size {{ disk_size }} --memory {{ memory }} --openshift-version {{ oc_version }} --iso-url file:///tmp/minishift.iso"
+    shell: "{{ minishift_bin }} start --profile {{ profile }} --cpus {{ cpus }} --disk-size {{ disk_size }} --memory {{ memory }} --openshift-version {{ oc_version }} --iso-url file:///var/tmp/minishift.iso"
     when:
       - cpu_mode_not_configured|bool
       - start_minishift|bool == true

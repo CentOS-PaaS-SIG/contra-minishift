@@ -71,7 +71,7 @@
   - name: "Pull down the minishift iso if running minishift locally"
     get_url:
       url: "{{ minishift_iso }}"
-      dest: "/tmp/minishift.iso"
+      dest: "/var/tmp/minishift.iso"
       timeout: 120
     when: minishift_external_vm_ip == ""
 
